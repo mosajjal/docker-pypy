@@ -12,7 +12,7 @@ if __name__ == "__main__":
         print("building the new image")
         
         img = client.images.build(path=current_dir+f"/{item}")
-        print("pypy {item} image built successfully, tagging the image")
+        print("pypy f{item} image built successfully, tagging the image")
         img[0].tag(f"mosajjal/pypy:{item}")
 
         print("pushing the repository to docker hub")
