@@ -4,12 +4,12 @@ ENV PYTHON_PIP_VERSION 19.0.2
 ENV RELEASE 95891-928a4f70d3de
 ENV VERSION 3.5-7
 
+# Install dependencies
+RUN tce-load -wic openssl expat2 libffi bzip2-lib ncurses
+
 # Download release binary and uncompress it in /usr/local/
 RUN sudo wget http://buildbot.pypy.org/nightly/release-pypy$VERSION.x/pypy-c-jit-$RELEASE-linux64.tar.bz2 -O pypy.tar.bz2
 RUN sudo tar -xjC /usr/local --strip-components=1 -f pypy.tar.bz2
-
-# Install dependencies
-RUN tce-load -wic openssl expat2 libffi bzip2-lib ncurses
 
 # Remove temp
 RUN sudo rm -rf /tmp/tce/optional/* pypy.tar.bz2
@@ -34,3 +34,4 @@ RUN set -ex; \
     sudo rm -f get-pip.py
 
 ENTRYPOINT [ "pypy3" ]
+
